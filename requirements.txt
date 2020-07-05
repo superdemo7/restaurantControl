@@ -1,7 +1,10 @@
-altgraph==0.17
-click==7.1.2
-PyInstaller==3.6
-PyQt5==5.14.2
-PyQt5-sip==12.8.0
-pyqt5-tools==5.14.2.1.7b3
-python-dotenv==0.13.0
+bottle==0.12.18
+bottle-websocket==0.2.9
+Eel==0.13.2
+future==0.18.2
+gevent==20.6.2
+gevent-websocket==0.10.1
+greenlet==0.4.16
+whichcraft==0.6.1
+zope.event==4.4
+zope.interface==5.1.0
