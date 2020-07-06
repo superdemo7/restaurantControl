@@ -5,10 +5,31 @@
         <div class="columns">
           <div class="column is-4 is-offset-8">
             <div class="buttons">
-              <b-button type="is-success" @click="addUser" expanded>Agregar usuario</b-button>
+              <b-button type="is-success" @click="addUser = true" expanded>Agregar usuario</b-button>
             </div>
           </div>
         </div>
+        <b-modal :active.sync="addUser">
+          <div class="box">
+            <b-field label="Nombre">
+              <b-input v-model="newUser.name"></b-input>
+            </b-field>
+            <b-field label="Contraseña">
+              <b-input type="password" v-model="newUser.password" password-reveal></b-input>
+            </b-field>
+            <b-field label="Rol">
+              <b-select v-model="newUser.type" placeholder="Selecciona un rol" expanded>
+                <option value="admin">Administrador</option>
+                <option value="waiter">Mesero</option>
+                <option value="delivery">Repartidor</option>
+                <option value="chef">Cocinero</option>
+              </b-select>
+            </b-field>
+            <div class="buttons">
+              <b-button type="is-primary" expanded>Guardar</b-button>
+            </div>
+          </div>
+        </b-modal>
         <div class="columns">
           <div class="column is-11 is-offset-1">
             <table class="table">
@@ -51,30 +72,19 @@
 export default {
   data() {
     return {
-      users: []
+      users: [],
+      addUser: false,
+      newUser: {
+        name: "",
+        password: "",
+        type: ""
+      }
     };
   },
   mounted() {
     this.getUsers();
   },
   methods: {
-    async addUser() {
-      let age = 0;
-      const prompt = this.$buefy.dialog.prompt({
-        message: `What's your age?`,
-        inputAttrs: {
-          type: "number",
-          placeholder: "Type your age",
-          value: "18",
-          maxlength: 2,
-          min: 18
-        },
-        trapFocus: true,
-        onConfirm: value => (age = value)
-      });
-      console.log({ age, prompt });
-      console.log("fin");
-    },
     async getUsers() {
       const users = await eel.users_getAll()();
       console.log(users);
