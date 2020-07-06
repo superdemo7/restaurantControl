@@ -2,9 +2,9 @@
   <div id="app">
     <div id="nav">
       <template v-if="show">
-        <router-link to="/orders/delivery">Ordenes</router-link>&nbsp;|
+        <router-link :to="`/orders/${order_view}`">Órdenes</router-link>&nbsp;|
         <router-link to="/menu">Menú</router-link>&nbsp;|
-        <router-link to="/system">Sistema</router-link>&nbsp;|
+        <router-link v-if="user.type == 'admin'" to="/system">Sistema</router-link>&nbsp;|
         <a href="#" @click="logout">Salir</a>
       </template>
     </div>
@@ -16,10 +16,43 @@ export default {
   data() {
     return {
       show: false,
+      user: {
+        type: ""
+      },
+      order_view: ""
     };
   },
+  onIdle() {
+    if (this.$route.path != "/") {
+      this.logout();
+      this.$buefy.dialog.alert("Tu sesión se ha cerrado por inactividad");
+    }
+  },
   watch: {
-    $route(to, from) {
+    async $route(to, from) {
+      const user = await eel.users_getUser()();
+      if (user) {
+        this.user = user;
+        switch (user.type) {
+          case "admin":
+          case "waiters":
+            this.order_view = "waiters";
+            break;
+          case "delivery":
+            this.order_view = "delivery";
+            break;
+          case "chef":
+            this.order_view = "chef";
+          default:
+            this.order_view = "";
+            break;
+        }
+      } else {
+        this.user = {
+          type: ""
+        };
+        this.order_view = "";
+      }
       const path = to.path;
       if (path == "/") {
         this.show = false;
