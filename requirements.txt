@@ -5,6 +5,7 @@ future==0.18.2
 gevent==20.6.2
 gevent-websocket==0.10.1
 greenlet==0.4.16
+tinydb==4.1.1
 whichcraft==0.6.1
 zope.event==4.4
 zope.interface==5.1.0
