@@ -19,6 +19,16 @@ const routes = [
     name: 'ordenes',
     component: () => import('../views/orders/Waiters.vue')
     //children: [{ path: 'waiters', component: () => import('../views/orders/Waiters.vue') }]
+  },
+  {
+    path: '/orders/delivery',
+    name: 'repartidor',
+    component: () => import('../views/orders/Delivery.vue')
+  },
+  {
+    path: '/orders/chef',
+    name: 'cocinero',
+    component: () => import('../views/orders/Chef.vue')
   }
 ]
 

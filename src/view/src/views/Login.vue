@@ -22,7 +22,7 @@ export default {
     async ingresar() {
       const usuario = this.usuario;
       const pass = this.pass;
-      const res = {success:true,msg:"",type:"waiters"}//await eel.login(usuario, pass)();
+      const res = {success:true,msg:"",type:"chef"}//await eel.login(usuario, pass)();
       if (res.success) {
         this.$buefy.toast.open({
                     message: "ingresaste correctamente",
