@@ -43,6 +43,7 @@ export default {
             break;
           case "chef":
             this.order_view = "chef";
+            break;
           default:
             this.order_view = "";
             break;

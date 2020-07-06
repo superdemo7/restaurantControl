@@ -35,7 +35,7 @@ export default {
             break;
           case "chef":
             this.$router.push(`orders/chef`);
-
+            break;
           default:
             this.$buefy.toast.open({
               message: "Tipo de usuario desconocido",

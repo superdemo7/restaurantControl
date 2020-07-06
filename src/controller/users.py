@@ -23,6 +23,22 @@ def users_login(id,password):
         response["msg"] = "Este ID no existe"
     return response
 @eel.expose
+def users_saveUser(newUser):
+    response = {
+        "success":False,
+        "msg":""
+    }
+    if not newUser["name"]:
+        response["msg"] = "Nombre no puede estar vacio"
+    elif not newUser["password"]:
+        response["msg"] = "Contraseña no puede estar vacio"
+    elif not newUser["type"]:
+        response["msg"] = "Rol no puede estar vacio"
+    else:
+        response["success"] = True
+        user.register(newUser["name"],newUser["password"],newUser["type"])
+    return response
+@eel.expose
 def users_getUser():
     return user.getUser()
 @eel.expose

@@ -11,6 +11,11 @@ export default {
         address: "",
         products: []
       },
+      selectedProduct: {
+        id: 0,
+        name: "",
+        price: 0.0
+      },
       products: [],
       tables: []
     };

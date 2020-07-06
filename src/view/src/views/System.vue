@@ -26,7 +26,7 @@
               </b-select>
             </b-field>
             <div class="buttons">
-              <b-button type="is-primary" expanded>Guardar</b-button>
+              <b-button type="is-primary" @click="saveUser" expanded>Guardar</b-button>
             </div>
           </div>
         </b-modal>
@@ -55,13 +55,40 @@
           </div>
         </div>
       </b-tab-item>
-      <b-modal :active.sync="addTable">Agregando mesa</b-modal>
+      <b-modal :active.sync="addTable">
+        <b-field label="Nombre de mesa">
+          <b-input v-model="newTable"></b-input>
+        </b-field>
+        <div class="buttons">
+          <b-button type="is-primary" @click="saveTable" expanded>Guardar</b-button>
+        </div>
+      </b-modal>
       <b-tab-item label="Mesas" icon="grid">
         <div class="columns">
           <div class="column is-4 is-offset-8">
             <div class="buttons">
               <b-button type="is-success" @click="addTable = true" expanded>Agregar Mesa</b-button>
             </div>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-11 is-offset-1">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="table in tables" :key="`table_${table.id}`">
+                  <td>{{table.name}}</td>
+                  <td>
+                    <b-button type="is-danger">Borrar</b-button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </b-tab-item>
@@ -81,6 +108,7 @@ export default {
         type: ""
       },
       addTable: false,
+      newTable: "",
       tables: [
         {
           id: 1,
@@ -99,11 +127,23 @@ export default {
   },
   mounted() {
     this.getUsers();
+    this.getTables();
   },
   methods: {
+    async saveTable() {},
+    async saveUser() {
+      const newUser = this.newUser;
+      const response = await eel.users_saveUser(newUser)();
+      console.log(response);
+      this.getUsers();
+    },
+    async getTables() {
+      const tables = await eel.tables_getAll()();
+      console.log(table);
+      this.tables = tables;
+    },
     async getUsers() {
       const users = await eel.users_getAll()();
-      console.log(users);
       this.users = users;
     }
   }
