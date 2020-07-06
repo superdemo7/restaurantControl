@@ -1,181 +1,15 @@
 <template>
-  <div class="container is-fluid" style="display: grid; grid-template-columns: auto auto;">
-    <div style="text-align: center; padding: 10%; margin: 10px;">
-      <article class="panel is-info">
-        <p class="panel-heading">Info</p>
-        <p class="panel-tabs">
-          <a class="is-active">All</a>
-          <a>Public</a>
-          <a>Private</a>
-          <a>Sources</a>
-          <a>Forks</a>
-        </p>
-        <div class="panel-block">
-          <p class="control has-icons-left">
-            <input class="input is-info" type="text" placeholder="Search" />
-            <span class="icon is-left">
-              <i class="fas fa-search" aria-hidden="true"></i>
-            </span>
-          </p>
-        </div>
-        <a class="panel-block is-active">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          bulma
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          marksheet
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          minireset.css
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          jgthms.github.io
-        </a>
-      </article>
-    </div>
-    <div>
-      <article class="panel is-info">
-        <p class="panel-heading">Info</p>
-        <p class="panel-tabs">
-          <a class="is-active">All</a>
-          <a>Public</a>
-          <a>Private</a>
-          <a>Sources</a>
-          <a>Forks</a>
-        </p>
-        <div class="panel-block">
-          <p class="control has-icons-left">
-            <input class="input is-info" type="text" placeholder="Search" />
-            <span class="icon is-left">
-              <i class="fas fa-search" aria-hidden="true"></i>
-            </span>
-          </p>
-        </div>
-        <a class="panel-block is-active">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          bulma
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          marksheet
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          minireset.css
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          jgthms.github.io
-        </a>
-      </article>
-    </div>
-    <br />
-    <div>
-      <article class="panel is-info">
-        <p class="panel-heading">Info</p>
-        <p class="panel-tabs">
-          <a class="is-active">All</a>
-          <a>Public</a>
-          <a>Private</a>
-          <a>Sources</a>
-          <a>Forks</a>
-        </p>
-        <div class="panel-block">
-          <p class="control has-icons-left">
-            <input class="input is-info" type="text" placeholder="Search" />
-            <span class="icon is-left">
-              <i class="fas fa-search" aria-hidden="true"></i>
-            </span>
-          </p>
-        </div>
-        <a class="panel-block is-active">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          bulma
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          marksheet
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          minireset.css
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          jgthms.github.io
-        </a>
-      </article>
-    </div>
-    <div>
-      <article class="panel is-info">
-        <p class="panel-heading">Info</p>
-        <p class="panel-tabs">
-          <a class="is-active">All</a>
-          <a>Public</a>
-          <a>Private</a>
-          <a>Sources</a>
-          <a>Forks</a>
-        </p>
-        <div class="panel-block">
-          <p class="control has-icons-left">
-            <input class="input is-info" type="text" placeholder="Search" />
-            <span class="icon is-left">
-              <i class="fas fa-search" aria-hidden="true"></i>
-            </span>
-          </p>
-        </div>
-        <a class="panel-block is-active">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          bulma
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          marksheet
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          minireset.css
-        </a>
-        <a class="panel-block">
-          <span class="panel-icon">
-            <i class="fas fa-book" aria-hidden="true"></i>
-          </span>
-          jgthms.github.io
-        </a>
-      </article>
+  <div class="container is-fluid">
+    <div class="columns">
+      <div class="column" v-for="order in orders" :key="order.id">
+        <article class="panel is-info">
+          <p class="panel-heading">{{`Mesa: ${order.table}`}} {{`Tiempo: ${order.time_elapsed} min`}}</p>
+          <div v-for="product in order.products" :key="product.id">
+            <a class="panel-block is-active">{{product.name}}: {{product.quantity}}</a>
+            <a class="panel-block">{{product.specification}}</a>
+          </div>
+        </article>
+      </div>
     </div>
   </div>
 </template>
@@ -220,8 +54,8 @@ export default {
             },
             {
               name: "Coctel GDE",
-              quantity: 2,
-              specification: "1 con todo, 1 sin jitomate"
+              quantity: 4,
+              specification: "1 con todo, 3 sin jitomate"
             }
           ]
         },
@@ -232,7 +66,7 @@ export default {
             {
               name: "Tostada de ceviche",
               quantity: 1,
-              specification: "Sin aguacate"
+              specification: "doble aguacate"
             },
             {
               name: "Coctel GDE",
