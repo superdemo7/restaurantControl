@@ -2,3 +2,5 @@
 venv
 #Visual studio settings
 .vscode
+#database
+db.json

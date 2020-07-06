@@ -15,22 +15,27 @@ const routes = [
     component: () => import("../views/Menu.vue"),
   },
   {
+    path: "/system",
+    name: "Sistema",
+    component: () => import("../views/System.vue"),
+  },
+  {
     path: "/orders/waiters",
     name: "ordenes",
     component: () => import("../views/orders/Waiters.vue"),
     //children: [{ path: 'waiters', component: () => import('../views/orders/Waiters.vue') }]
   },
   {
-    path: '/orders/delivery',
-    name: 'repartidor',
-    component: () => import('../views/orders/Delivery.vue')
+    path: "/orders/delivery",
+    name: "repartidor",
+    component: () => import("../views/orders/Delivery.vue"),
   },
   {
-    path: '/orders/chef',
-    name: 'cocinero',
-    component: () => import('../views/orders/Chef.vue')
-  }
-]
+    path: "/orders/chef",
+    name: "cocinero",
+    component: () => import("../views/orders/Chef.vue"),
+  },
+];
 
 const router = new VueRouter({
   routes,
