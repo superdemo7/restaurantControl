@@ -30,7 +30,7 @@
               <td v-text="order.table"  style="text-align: center"></td>
               <td v-text="order.status"  style="text-align: center"></td>
               <td v-text="`${order.time_elapsed} min`"  style="text-align: center"></td>
-              <td><b-button type="is-info">Editar</b-button> <b-button type="is-danger">Cerrar</b-button></td>
+              <td><b-button type="is-warning">Editar</b-button> <b-button type="is-danger">Cerrar</b-button></td>
             </tr>
           </tbody>
         </table>

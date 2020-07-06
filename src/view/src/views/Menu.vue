@@ -31,8 +31,7 @@
               <td style="text-align: center">{{product.price}}</td>
               <td style="text-align: center">{{product.status?'Habilitado':'Deshabilitado'}}</td>
               <td>
-                <b-button type="is-warning">Modificar</b-button>
-                <b-button type="is-danger">Eliminar</b-button>
+                <b-button type="is-warning">Modificar</b-button> <b-button type="is-danger">Eliminar</b-button>
               </td>
             </tr>
           </tbody>
