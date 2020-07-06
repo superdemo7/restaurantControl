@@ -1,8 +1,9 @@
 <template>
   <div class="container is-fluid" style="display: grid; justify-content: center;">
+    <b-modal :active.sync="addCategory">Agregando Categoria</b-modal>
     <div class="buttons">
-      <b-button type="is-success">Agregar Categoria</b-button>
-      <b-button type="is-success">Agregar Producto</b-button>
+      <b-button type="is-success" @click="addCategory = true">Agregar Categoria</b-button>
+      <b-button type="is-success" @click="openProduct">Agregar Producto</b-button>
     </div>
     <b-tabs vertical>
       <b-tab-item v-for="category in categories" :key="category.id" :label="category.name">
@@ -30,7 +31,8 @@
               <td style="text-align: center">{{product.price}}</td>
               <td style="text-align: center">{{product.status?'Habilitado':'Deshabilitado'}}</td>
               <td>
-                <b-button type="is-warning">Modificar</b-button> <b-button type="is-danger">Eliminar</b-button>
+                <b-button type="is-warning">Modificar</b-button>
+                <b-button type="is-danger">Eliminar</b-button>
               </td>
             </tr>
           </tbody>
@@ -41,16 +43,25 @@
 </template>
 
 <script>
+import ProductDetail from "./menu/ProductDetail.vue";
 export default {
   data() {
     return {
-      categories: []
+      categories: [],
+      addCategory: false
     };
   },
   mounted() {
     this.get_categories();
   },
   methods: {
+    openProduct(id = 0) {
+      this.$buefy.modal.open({
+        parent: this,
+        component: ProductDetail,
+        trapFocus: true
+      });
+    },
     get_categories() {
       this.categories = [
         {

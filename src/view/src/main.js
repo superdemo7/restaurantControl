@@ -10,7 +10,7 @@ const eventsHub = new Vue();
 
 Vue.use(idleVue, {
   eventEmitter: eventsHub,
-  idleTime: 60000,
+  idleTime: 600000,
 });
 
 Vue.use(Buefy);
