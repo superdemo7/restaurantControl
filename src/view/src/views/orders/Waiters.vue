@@ -1,7 +1,7 @@
 <template>
   <div class="container is-fluid">
     <div class="columns">
-      <div class="column" style= "display: grid; justify-content: center;">
+      <div class="column" style="display: grid; justify-content: center;">
         <strong>Ordenes activas</strong>
         <table class="table">
           <thead>
@@ -15,7 +15,7 @@
               <th>
                 <strong>Estado</strong>
               </th>
-             <th>
+              <th>
                 <strong>Tiempo</strong>
               </th>
               <th>
@@ -26,19 +26,21 @@
 
           <tbody>
             <tr v-for="(order, index) in orders.active" :key="index">
-              <td v-text="order.id"  style="text-align: center"></td>
-              <td v-text="order.table"  style="text-align: center"></td>
-              <td v-text="order.status"  style="text-align: center"></td>
-              <td v-text="`${order.time_elapsed} min`"  style="text-align: center"></td>
-              <td><b-button type="is-info">Editar</b-button> <b-button type="is-danger">Cerrar</b-button></td>
+              <td v-text="order.id" style="text-align: center"></td>
+              <td v-text="order.table" style="text-align: center"></td>
+              <td v-text="order.status" style="text-align: center"></td>
+              <td v-text="`${order.time_elapsed} min`" style="text-align: center"></td>
+              <td>
+                <b-button type="is-info">Editar</b-button>
+                <b-button type="is-danger">Cerrar</b-button>
+              </td>
             </tr>
           </tbody>
         </table>
-
       </div>
-      <div class="column" style= "display: grid; justify-content: center;">
-          <strong>Ordenes Finalizadas</strong>
-          <table class="table">
+      <div class="column" style="display: grid; justify-content: center;">
+        <strong>Ordenes Finalizadas</strong>
+        <table class="table">
           <thead>
             <tr>
               <th>
@@ -55,9 +57,11 @@
 
           <tbody>
             <tr v-for="(order, index) in orders.finished" :key="index">
-              <td v-text="order.id"  style="text-align: center"></td>
-              <td v-text="order.table"  style="text-align: center"></td>
-              <td><b-button type="is-info">Ver</b-button></td>
+              <td v-text="order.id" style="text-align: center"></td>
+              <td v-text="order.table" style="text-align: center"></td>
+              <td>
+                <b-button type="is-info" @click="viewOrder(order.id)">Ver</b-button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -67,6 +71,7 @@
 </template>
 
 <script>
+import CheckOrder from "./CheckOrder.vue";
 export default {
   data() {
     return {
@@ -77,6 +82,13 @@ export default {
     this.get_orders();
   },
   methods: {
+    viewOrder(id) {
+      this.$buefy.modal.open({
+        parent: this,
+        component: CheckOrder,
+        trapFocus: true
+      });
+    },
     get_orders() {
       this.orders = {
         active: [
