@@ -2,12 +2,13 @@
   <div style="color:white">
       <p>Informacion</p>
       <ul>
-        <li>id: {{order.id}} &nbsp;&nbsp;&nbsp;Mesa: {{order.table}} &nbsp;&nbsp;&nbsp;Total: {{order.total}}$ &nbsp;&nbsp;&nbsp;Fecha: {{order.date}} &nbsp;&nbsp;&nbsp;Tipo: {{order.type}} &nbsp;&nbsp;&nbsp;Nombre: {{order.waitress}}</li>
+        <li>id: {{order.id}} <br/>  Mesa: {{order.table}} <br/> Total: {{order.total}}$ <br/> Fecha: {{order.date}} <br/>Tipo: {{order.type}} <br/>Nombre: {{order.waitress}}</li>
       </ul>
       <br>
-      <p>Consumio:</p>
+      <p>Consumió:</p>
       <ul v-for="info in order.products" :key="info.id">
-        <li>Platillo: {{info.name}} &nbsp;&nbsp;&nbsp;Cantidad: {{info.quantity}} &nbsp;&nbsp;&nbsp;Precio: {{info.price}}$ </li>
+        <li>Platillo: {{info.name}} <br/> Cantidad: {{info.quantity}} <br/> Precio: {{info.price}}$ </li>
+        <br/>
       </ul>
         
   </div>

@@ -2,6 +2,10 @@
   <div class="container is-fluid">
     <div class="columns">
       <div class="column" style="display: grid; justify-content: center;">
+          <p align="right">
+                  <b-button type="is-success">Agregar Orden</b-button>
+                  </p>
+                  <br>
         <strong>Ordenes activas</strong>
         <table class="table">
           <thead>
@@ -31,12 +35,13 @@
               <td v-text="order.status" style="text-align: center"></td>
               <td v-text="`${order.time_elapsed} min`" style="text-align: center"></td>
               <td>
-                <b-button type="is-warning">Editar</b-button> <b-button type="is-danger">Cerrar</b-button>
+                <b-button type="is-danger">Cerrar</b-button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+
       <div class="column" style="display: grid; justify-content: center;">
         <strong>Ordenes Finalizadas</strong>
         <table class="table">
