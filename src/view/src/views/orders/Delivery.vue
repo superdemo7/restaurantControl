@@ -6,16 +6,16 @@
         <thead>
           <tr>
             <th>
-              <abbr title="Orden">Orden</abbr>
+              <strong> Orden </strong>
             </th>
             <th>
-              <abbr title="Domicilio">Domicilio</abbr>
+              <strong>Domicilio</strong>
             </th>
             <th>
-              <abbr title="Tiempo">Tiempo</abbr>
+              <strong>Tiempo</strong>
             </th>
             <th>
-              <abbr title="Acciones">Acciones</abbr>
+              <strong>Acciones</strong>
             </th>
           </tr>
         </thead>
