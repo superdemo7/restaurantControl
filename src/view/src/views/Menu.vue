@@ -1,21 +1,25 @@
 <template>
-  <div class="container is-fluid">
-    <b-tabs vertical >
+  <div class="container is-fluid" style="display: grid; justify-content: center;">
+    <div class="buttons">
+      <b-button type="is-success">Agregar Categoria</b-button>
+      <b-button type="is-success">Agregar Producto</b-button>
+    </div>
+    <b-tabs vertical>
       <b-tab-item v-for="category in categories" :key="category.id" :label="category.name">
         <table class="table">
           <thead>
             <tr>
               <th>
-                <abbr title="Nombre">Nombre</abbr>
+                <strong>Nombre</strong>
               </th>
               <th>
-                <abbr title="Precio">Precio</abbr>
+                <strong>Precio</strong>
               </th>
               <th>
-                <abbr title="Disponibilidad">Disponibilidad</abbr>
+                <strong>Disponibilidad</strong>
               </th>
               <th>
-                <abbr title="Acciones">Acciones</abbr>
+                <strong>Acciones</strong>
               </th>
             </tr>
           </thead>
@@ -24,8 +28,10 @@
             <tr v-for="product in category.products" :key="product.id">
               <td style="text-align: center">{{product.name}}</td>
               <td style="text-align: center">{{product.price}}</td>
-              <td style="text-align: center">{{product.status}}</td>
-              <td><b-button type="is-warning">Modificar</b-button> <b-button type="is-success">Eliminar</b-button></td>
+              <td style="text-align: center">{{product.status?'Habilitado':'Deshabilitado'}}</td>
+              <td>
+                <b-button type="is-warning">Modificar</b-button> <b-button type="is-danger">Eliminar</b-button>
+              </td>
             </tr>
           </tbody>
         </table>
