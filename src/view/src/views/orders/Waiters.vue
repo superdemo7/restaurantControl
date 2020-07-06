@@ -2,10 +2,10 @@
   <div class="container is-fluid">
     <div class="columns">
       <div class="column" style="display: grid; justify-content: center;">
-          <p align="right">
-                  <b-button type="is-success">Agregar Orden</b-button>
-                  </p>
-                  <br>
+        <p align="right">
+          <b-button type="is-success" @click="addOrder">Agregar Orden</b-button>
+        </p>
+        <br />
         <strong>Ordenes activas</strong>
         <table class="table">
           <thead>
@@ -76,6 +76,7 @@
 
 <script>
 import CheckOrder from "./CheckOrder.vue";
+import AddOrder from "./AddOrder.vue";
 export default {
   data() {
     return {
@@ -109,6 +110,13 @@ export default {
           { id: 10, table: "5-A" }
         ]
       };
+    },
+    addOrder() {
+      this.$buefy.modal.open({
+        parent: this,
+        component: AddOrder,
+        trapFocus: true
+      });
     }
   }
 };
