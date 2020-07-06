@@ -1,5 +1,5 @@
 <template>
-  <div>Menu</div>
+  <div>Sistema</div>
 </template>
 
 <script>
