@@ -55,14 +55,15 @@
           </div>
         </div>
       </b-tab-item>
-
+      <b-modal :active.sync="addTable">Agregando mesa</b-modal>
       <b-tab-item label="Mesas" icon="grid">
-        What light is light, if Silvia be not seen?
-        <br />What joy is joy, if Silvia be not by—
-        <br />Unless it be to think that she is by
-        <br />And feed upon the shadow of perfection?
-        <br />Except I be by Silvia in the night,
-        <br />There is no music in the nightingale.
+        <div class="columns">
+          <div class="column is-4 is-offset-8">
+            <div class="buttons">
+              <b-button type="is-success" @click="addTable = true" expanded>Agregar Mesa</b-button>
+            </div>
+          </div>
+        </div>
       </b-tab-item>
     </b-tabs>
   </div>
@@ -78,7 +79,22 @@ export default {
         name: "",
         password: "",
         type: ""
-      }
+      },
+      addTable: false,
+      tables: [
+        {
+          id: 1,
+          table: "1-A"
+        },
+        {
+          id: 2,
+          table: "1-b"
+        },
+        {
+          id: 3,
+          table: "2"
+        }
+      ]
     };
   },
   mounted() {
