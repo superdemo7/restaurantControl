@@ -56,11 +56,13 @@
         </div>
       </b-tab-item>
       <b-modal :active.sync="addTable">
-        <b-field label="Nombre de mesa">
-          <b-input v-model="newTable"></b-input>
-        </b-field>
-        <div class="buttons">
-          <b-button type="is-primary" @click="saveTable" expanded>Guardar</b-button>
+        <div class="box">
+          <b-field label="Nombre de mesa">
+            <b-input v-model="newTable"></b-input>
+          </b-field>
+          <div class="buttons">
+            <b-button type="is-primary" @click="saveTable" expanded>Guardar</b-button>
+          </div>
         </div>
       </b-modal>
       <b-tab-item label="Mesas" icon="grid">
@@ -109,20 +111,7 @@ export default {
       },
       addTable: false,
       newTable: "",
-      tables: [
-        {
-          id: 1,
-          table: "1-A"
-        },
-        {
-          id: 2,
-          table: "1-b"
-        },
-        {
-          id: 3,
-          table: "2"
-        }
-      ]
+      tables: []
     };
   },
   mounted() {
@@ -130,21 +119,49 @@ export default {
     this.getTables();
   },
   methods: {
-    async saveTable() {},
+    async saveTable() {
+      const newTable = this.newTable;
+      const response = await eel.tables_addTable(newTable)();
+      console.log(response);
+      if (response.success) {
+        this.$buefy.toast.open("Se agrego la mesa");
+      } else {
+        this.$buefy.toast.open({
+          message: response.msg,
+          type: "is-danger"
+        });
+      }
+      this.getTables();
+    },
     async saveUser() {
       const newUser = this.newUser;
       const response = await eel.users_saveUser(newUser)();
       console.log(response);
+      if (response.success) {
+        this.$buefy.toast.open("Se agrego el usuario");
+      } else {
+        this.$buefy.toast.open({
+          message: response.msg,
+          type: "is-danger"
+        });
+      }
       this.getUsers();
     },
     async getTables() {
       const tables = await eel.tables_getAll()();
-      console.log(table);
       this.tables = tables;
     },
     async getUsers() {
       const users = await eel.users_getAll()();
       this.users = users;
+    },
+    async deleteUser(id) {
+      await eel.users_deleteUser(id)();
+      this.getUsers();
+    },
+    async deleteTable(id) {
+      await eel.tables_deleteTable(id)();
+      this.getTables();
     }
   }
 };

@@ -1,1 +1,1 @@
-{"users": {"1": {"name": "admin", "password": "admin123", "type": "admin"}, "2": {"name": "algo", "password": "algo", "type": "delivery"}, "3": {"name": "cocinero", "password": "cocinero", "type": "chef"}}}
+{"users": {"1": {"name": "admin", "password": "admin123", "type": "admin"}, "2": {"name": "algo", "password": "algo", "type": "delivery"}, "3": {"name": "cocinero", "password": "cocinero", "type": "chef"}}, "tables": {"1": {"name": "1-a"}}}
