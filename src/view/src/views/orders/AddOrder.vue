@@ -1,6 +1,7 @@
 <template>
   <div class="container is-fluid" style="color:white;">
-    <strong>Agregar una Orden</strong> <br>
+    <strong>Agregar una Orden</strong>
+    <br />
     <p>Mesa:</p>
     <b-field>
       <b-select placeholder="Selecciona una Mesa" v-model="order.table">
@@ -15,17 +16,15 @@
     <b-field v-if="order.table == 0">
       <b-input v-model="order.address"></b-input>
     </b-field>
-        <b-field>
+    <b-field>
       <b-select placeholder="Selecciona un platillo" v-model="selectedproduct" expanded>
-        <option
-          v-for="option in products"
-          :value="option"
-          :key="option.id"
-        >{{ option.name }}</option>
+        <option v-for="option in products" :value="option" :key="option.id">{{ option.name }}</option>
       </b-select>
     </b-field>
-     <p>Elige un platillo</p>
-    <p align="right"><b-button type="is-info" @click="add_product">Agregar Producto</b-button></p>
+    <p>Elige un platillo</p>
+    <p align="right">
+      <b-button type="is-info" @click="add_product">Agregar Producto</b-button>
+    </p>
   </div>
 </template>
 
@@ -106,8 +105,24 @@ export default {
       ];
     },
     add_product() {
-      const selectedproduct = 
-
+      const selectedProduct = this.selectedproduct;
+      if (selectedProduct.id == 0) {
+        this.$buefy.toast.open({
+          message: "Tienes que seleccionar un producto",
+          type: "is-danger"
+        });
+      } else {
+        const { id, name, price } = selectedProduct;
+        const product = {
+          id,
+          name,
+          quantity: 1,
+          specifications: "",
+          total: price
+        };
+        this.order.products.push(product);
+      }
+      console.log(this.order);
     }
   }
 };
