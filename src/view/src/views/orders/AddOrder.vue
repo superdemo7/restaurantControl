@@ -118,6 +118,7 @@ export default {
           name,
           quantity: 1,
           specifications: "",
+          price,
           total: price
         };
         this.order.products.push(product);
