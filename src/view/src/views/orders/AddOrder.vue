@@ -1,5 +1,32 @@
 <template>
-  <div class="container is-fluid">AddOrder</div>
+  <div class="container is-fluid" style="color:white;">
+    <strong>Agregar una Orden</strong> <br>
+    <p>Mesa:</p>
+    <b-field>
+      <b-select placeholder="Selecciona una Mesa" v-model="order.table">
+        <option
+          v-for="option in tables"
+          :value="option.table_id"
+          :key="option.table_id"
+        >{{ option.name }}</option>
+      </b-select>
+    </b-field>
+    <p v-if="order.table == 0">Añadir Direccion</p>
+    <b-field v-if="order.table == 0">
+      <b-input v-model="order.address"></b-input>
+    </b-field>
+        <b-field>
+      <b-select placeholder="Selecciona un platillo" v-model="selectedproduct" expanded>
+        <option
+          v-for="option in products"
+          :value="option"
+          :key="option.id"
+        >{{ option.name }}</option>
+      </b-select>
+    </b-field>
+     <p>Elige un platillo</p>
+    <p align="right"><b-button type="is-info" @click="add_product">Agregar Producto</b-button></p>
+  </div>
 </template>
 
 <script>
@@ -12,7 +39,12 @@ export default {
         products: []
       },
       products: [],
-      tables: []
+      tables: [],
+      selectedproduct: {
+        id: 0,
+        name: "",
+        price: 0.0
+      }
     };
   },
   mounted() {
@@ -50,7 +82,7 @@ export default {
       ];
     },
     get_tables() {
-      this.table = [
+      this.tables = [
         {
           type: "togo",
           name: "Domicilio",
@@ -67,6 +99,10 @@ export default {
           table_id: 2
         }
       ];
+    },
+    add_product() {
+      const selectedproduct = 
+
     }
   }
 };
